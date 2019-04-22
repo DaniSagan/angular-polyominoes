@@ -9,7 +9,7 @@ import { PolyominoType } from './model/polyomino-type';
 })
 export class PolyominoService {
 
-  private _url: string = "/assets/data/polyomino-data.json";
+  private _url: string = "./assets/data/polyomino-data.json";
   constructor(private http: HttpClient) { }
 
   getPolyominoes(): Observable<PolyominoType[]> {
