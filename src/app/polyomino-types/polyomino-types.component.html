@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <div>
+    <h2>Polyomino Types</h2>
+    <ul class="polyomino-types">
+      <li *ngFor="let polyominoType of polyominoTypes" (click)=onSelect(polyominoType)>
+        <span class="polyomino-type">{{polyominoType.type}}</span>{{polyominoType.name}}
+      </li>
+    </ul>
+  </div>
+  <div>
+    <app-polyomino-type-detail #detail [polyominoType]="selectedPolyominoType"></app-polyomino-type-detail>
+  </div>
+</div>
