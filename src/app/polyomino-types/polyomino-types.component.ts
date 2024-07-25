@@ -4,18 +4,21 @@ import { POLYOMINOES } from '../mock-polyominoes'
 import { PolyominoService } from '../polyomino.service';
 import { PolyominoTypeDetailComponent } from '../polyomino-type-detail/polyomino-type-detail.component';
 import { Polyomino } from '../model/polyomino';
+import { NgFor } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-polyomino-types',
   templateUrl: './polyomino-types.component.html',
-  styleUrls: ['./polyomino-types.component.css']
+  styleUrls: ['./polyomino-types.component.css'],
+  imports: [PolyominoTypeDetailComponent, NgFor]
 })
 export class PolyominoTypesComponent implements OnInit {
 
-  polyominoTypes: PolyominoType[];
-  @ViewChild('detail') polyominoTypeDetailElement: PolyominoTypeDetailComponent;
+  polyominoTypes!: PolyominoType[];
+  @ViewChild('detail') polyominoTypeDetailElement!: PolyominoTypeDetailComponent;
 
-  private _selectedPolyominoType: PolyominoType;
+  private _selectedPolyominoType!: PolyominoType;
   get selectedPolyominoType(): PolyominoType {
     return this._selectedPolyominoType;
   }
@@ -24,14 +27,16 @@ export class PolyominoTypesComponent implements OnInit {
     this._selectedPolyominoType = polyominoType;
   }
 
-  constructor(private polyominoService: PolyominoService) { }
+  constructor(private polyominoService: PolyominoService) {
+
+  }
 
   ngOnInit() {
     this.polyominoService.getPolyominoes().subscribe(
-      data => 
+      data =>
       {
         this.polyominoTypes = data.map(x => new PolyominoType().loadFromObject(x))
-        /*this.polyominoTypes = data.map(x => 
+        /*this.polyominoTypes = data.map(x =>
         {
           const polyominoType = new PolyominoType();
           polyominoType.name = x.name;

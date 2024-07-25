@@ -1,8 +1,8 @@
 import { Vec2 } from "./vec2";
 
 export class GridHelper {
-    cellSize: number;
-    margin: number;
+    cellSize!: number;
+    margin!: number;
 
     getPointAtCorner(cellPosition: Vec2, cellCorner: CellCorner): Vec2 {
         var cellOrigin = cellPosition.scale(this.cellSize).add(new Vec2(this.margin, this.margin));
@@ -15,7 +15,7 @@ export class GridHelper {
         } else if(cellCorner === CellCorner.XposYpos) {
             return cellOrigin.add(new Vec2(this.cellSize, this.cellSize));
         } else {
-            return undefined;
+            throw new RangeError("Invalid value for cellCorner");
         }
     }
 
@@ -29,7 +29,7 @@ export class GridHelper {
         } else if(cellSide === CellSide.Ypos) {
             return [this.getPointAtCorner(cellPosition, CellCorner.XnegYpos), this.getPointAtCorner(cellPosition, CellCorner.XposYpos)];
         } else {
-            return undefined;
+            throw new RangeError("Invalid value for cellSide");
         }
     }
 }

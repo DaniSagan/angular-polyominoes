@@ -5,17 +5,18 @@ import { ColorPalette } from '../model/color-palette';
 import { PolyominoDrawer, DrawParams } from '../model/polyomino-drawer';
 
 @Component({
+  standalone: true,
   selector: 'app-polyomino-detail',
   templateUrl: './polyomino-detail.component.html',
   styleUrls: ['./polyomino-detail.component.css']
 })
 export class PolyominoDetailComponent implements OnInit {
 
-  @Input() polyomino: Polyomino;
-  @ViewChild('myPolyominoCanvas') canvas: ElementRef;
-  @ViewChild('rotatedPolyominoCanvas1') rotatedCanvas1: ElementRef;
-  @ViewChild('rotatedPolyominoCanvas2') rotatedCanvas2: ElementRef;
-  @ViewChild('rotatedPolyominoCanvas3') rotatedCanvas3: ElementRef;
+  @Input() polyomino!: Polyomino;
+  @ViewChild('myPolyominoCanvas') canvas!: ElementRef;
+  @ViewChild('rotatedPolyominoCanvas1') rotatedCanvas1!: ElementRef;
+  @ViewChild('rotatedPolyominoCanvas2') rotatedCanvas2!: ElementRef;
+  @ViewChild('rotatedPolyominoCanvas3') rotatedCanvas3!: ElementRef;
   cellSize: number = 40;
   margin: number = 2;
   colorPalette: ColorPalette = new ColorPalette();
@@ -66,13 +67,13 @@ export class PolyominoDetailComponent implements OnInit {
       ctx.fillStyle = palette.next();
       ctx.fillRect(margin + cell.x * cellSize, margin + cell.y * cellSize, cellSize - 1, cellSize - 1);
       ctx.rect(margin + cell.x * cellSize, margin + cell.y * cellSize, cellSize - 1, cellSize - 1);
-    } 
+    }
     ctx.stroke();       */
-  } 
+  }
 }
 
 class PolyominoDrawParams {
-  cellSize: number;
-  margin: number;
-  color: string; 
+  cellSize!: number;
+  margin!: number;
+  color!: string;
 }

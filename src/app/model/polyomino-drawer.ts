@@ -5,9 +5,9 @@ import { GridHelper, CellCorner, CellSide } from "./grid-helper";
 
 export class PolyominoDrawer {
 
-    polyomino: Polyomino;
-    canvasElement: HTMLCanvasElement;
-    drawParams: DrawParams;
+    polyomino!: Polyomino;
+    canvasElement!: HTMLCanvasElement;
+    drawParams!: DrawParams;
 
     draw() {
         var polyominoSize: Vec2 = this.polyomino.getSize();
@@ -18,28 +18,28 @@ export class PolyominoDrawer {
         gridHelper.cellSize = this.drawParams.cellSize;
         gridHelper.margin = this.drawParams.margin;
 
-        var ctx = this.canvasElement.getContext('2d');
+        var ctx = this.canvasElement.getContext('2d')!;
         ctx.imageSmoothingEnabled = false;
         ctx.translate(0.5,0.5);
         ctx.beginPath();
         for(let cell of this.polyomino.cells) {
             this.drawCellBackground(ctx, gridHelper, cell);
-        }    
+        }
         ctx.stroke();
         ctx.beginPath();
         for(let cell of this.polyomino.cells) {
             this.drawCellInternalBorders(ctx, gridHelper, cell);
-        }  
-        ctx.stroke();   
+        }
+        ctx.stroke();
         ctx.beginPath();
         for(let cell of this.polyomino.cells) {
             this.drawCellExternalBorders(ctx, gridHelper, cell);
-        }  
-        ctx.stroke();   
+        }
+        ctx.stroke();
     }
 
     private drawCellBackground(ctx: CanvasRenderingContext2D, gridHelper: GridHelper, cellPosition: Vec2) {
-        var topLeft = gridHelper.getPointAtCorner(cellPosition, CellCorner.XnegYneg);
+        var topLeft = gridHelper.getPointAtCorner(cellPosition, CellCorner.XnegYneg)!;
         ctx.fillStyle = this.drawParams.fillColor;
         ctx.fillRect(topLeft.x, topLeft.y, this.drawParams.cellSize, this.drawParams.cellSize);
     }
@@ -50,7 +50,7 @@ export class PolyominoDrawer {
         ctx.lineWidth = 1;
         var cellInfo: CellInfo = this.polyomino.getCellInfo(cellPosition);
         for(let side of [CellSide.Xpos, CellSide.Ypos, CellSide.Xneg, CellSide.Yneg]) {
-            var cellSideType: CellSideType = cellInfo.get(side);
+            var cellSideType: CellSideType = cellInfo.get(side)!;
             if(cellSideType === CellSideType.Internal) {
                 var points = gridHelper.getPointsAtSide(cellPosition, side);
                 ctx.moveTo(points[0].x, points[0].y);
@@ -65,7 +65,7 @@ export class PolyominoDrawer {
         ctx.lineWidth = 2;
         var cellInfo: CellInfo = this.polyomino.getCellInfo(cellPosition);
         for(let side of [CellSide.Xpos, CellSide.Ypos, CellSide.Xneg, CellSide.Yneg]) {
-            var cellSideType: CellSideType = cellInfo.get(side);
+            var cellSideType: CellSideType = cellInfo.get(side)!;
             if(cellSideType === CellSideType.External) {
                 var points = gridHelper.getPointsAtSide(cellPosition, side);
                 ctx.moveTo(points[0].x, points[0].y);

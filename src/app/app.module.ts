@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { PolyominoTypesComponent } from './polyomino-types/polyomino-types.component';
@@ -10,17 +10,11 @@ import { PolyominoTypeDetailItemComponent } from './polyomino-type-detail-item/p
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PolyominoTypesComponent,
-    PolyominoDetailComponent,
-    PolyominoTypeDetailComponent,
-    PolyominoTypeDetailItemComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [provideHttpClient(withInterceptorsFromDi())],
+  bootstrap: []
 })
 export class AppModule { }

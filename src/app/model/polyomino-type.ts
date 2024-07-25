@@ -1,8 +1,8 @@
 import { Polyomino } from "./polyomino";
 
 export class PolyominoType {
-    type: number;
-    name: string;
+    type!: number;
+    name!: string;
     items: Polyomino[] = [];
 
     loadFromObject(obj: any): PolyominoType {

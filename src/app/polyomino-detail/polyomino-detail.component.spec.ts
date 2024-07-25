@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PolyominoDetailComponent } from './polyomino-detail.component';
 
@@ -6,7 +6,7 @@ describe('PolyominoDetailComponent', () => {
   let component: PolyominoDetailComponent;
   let fixture: ComponentFixture<PolyominoDetailComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PolyominoDetailComponent ]
     })

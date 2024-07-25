@@ -4,7 +4,7 @@ import { CellSide } from "./grid-helper";
 
 export class Polyomino {
 
-    type: number;
+    type!: number;
     cells: Vec2[] = [];
 
     loadFromObject(obj: any): Polyomino {
@@ -36,7 +36,7 @@ export class Polyomino {
     }
 
     /**
-     * Returns the coordinates of the upper-left point of a rectangle that encloses the polyomino. 
+     * Returns the coordinates of the upper-left point of a rectangle that encloses the polyomino.
      */
     getOrigin(): Vec2 {
         var xmin: number = this.cells[0].x;
@@ -47,7 +47,7 @@ export class Polyomino {
         }
         return new Vec2(xmin, ymin);
     }
-    
+
     /**
      * Returns true if the cell positions are normalized.
      */
@@ -71,7 +71,7 @@ export class Polyomino {
 
     /**
      * Returns a clone of the polyomino applying a transformation to its cells
-     * @param transformation 
+     * @param transformation
      */
     clone(transformation: (cell: Vec2) => Vec2): Polyomino {
         var res = new Polyomino();
@@ -88,7 +88,7 @@ export class Polyomino {
      * @param transformation The transformation to apply to the clone
      */
     transformed(transformation: Transformation): Polyomino {
-        return this.clone(Vec2.transformations[transformation]);
+        return this.clone(Vec2.transformations.get(transformation)!);
     }
 
     /**
@@ -96,7 +96,7 @@ export class Polyomino {
      * @param cellPosition position to be checked
      */
     contains(cellPosition: Vec2): boolean {
-        var res: Vec2 = this.cells.find(c => c.equals(cellPosition));
+        var res: Vec2 = this.cells.find(c => c.equals(cellPosition))!;
         return res !== undefined;
     }
 
@@ -121,6 +121,6 @@ export class Polyomino {
         var origin = this.getOrigin();
         for(var k = 0; k < this.cells.length; k++) {
             this.cells[k] = this.cells[k].sub(origin);
-        }       
+        }
     }
 }
