@@ -1,33 +1,23 @@
-name: Build and Deploy Script
+name: Build and Deploy
 on:
   push:
     branches:
       - master
-
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Adding Node.js
-      uses: actions/setup-node@v2
+    - uses: actions/checkout@v3
+    - name: All things angular
+      uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.4.0
       with:
-        node-version: 22
+        github_access_token: ${{ secrets.GITHUB_TOKEN }}
+        build_configuration: production
+        base_href: /angular-polyominoes/
+        deploy_branch: gh-pages
+        angular_dist_build_folder: dist/angular-polyominoes
 
-    - name: Install Dependencies
-      run: npm install
-
-    - name: Build Angular App
-      run: npm run build
-
-    - name: Set git user
-      run: git config user.name github-actions && git config user.email github-actions@github.com
-
-    - name: Deploy to gh pages
-      run: |
-        npx angular-cli-ghpages --dir=dist/angular-polyominoes --no-silent
-      env:
-        CI: true
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+permissions:
+  contents: write # Allow write permission to GITHUB_TOKEN to commit to deploy branch.
