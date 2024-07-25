@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-polyominoes-ng18": {
+    "angular-polyominoes": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/angular-polyominoes-ng18",
+            "outputPath": "dist/angular-polyominoes",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-polyominoes-ng18:build:production"
+              "buildTarget": "angular-polyominoes:build:production"
             },
             "development": {
-              "buildTarget": "angular-polyominoes-ng18:build:development"
+              "buildTarget": "angular-polyominoes:build:development"
             }
           },
           "defaultConfiguration": "development"
