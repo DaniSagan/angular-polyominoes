@@ -9,8 +9,23 @@ export class Polyomino {
 
     loadFromObject(obj: any): Polyomino {
         this.type = obj["type"];
-        for(let cellObj of obj["cells"]) {
-            this.cells.push(new Vec2(0, 0).loadFromObject(cellObj));
+        let width: number = obj["width"];
+        let height: number = obj["height"];
+        let cells: string = obj["cells"];
+        let x = 0;
+        let y = 0;
+        for(let k = 0; k < cells.length; k++)
+        {
+            if(cells[k] === '1')
+            {
+                this.cells.push(new Vec2(x, y));
+            }
+            x++;
+            if(x >= width)
+            {
+                y++;
+                x = 0;
+            }
         }
         return this
     }
